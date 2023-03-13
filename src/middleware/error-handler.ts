@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import CustomAPIError from "../errors/custom-error.js";
+import { StatusCodes } from "http-status-codes";
+import { CustomAPIError } from "../errors/index.js";
 
 const errorHandlerMiddleware = async (
-  err,
+  err: CustomAPIError,
   req: Request,
   res: Response,
   next: NextFunction
@@ -14,7 +15,7 @@ const errorHandlerMiddleware = async (
   }
 
   return res
-    .status(500)
+    .status(StatusCodes.INTERNAL_SERVER_ERROR)
     .json({ msg: "Something Went Wrong, Please Try Again!" });
 };
 

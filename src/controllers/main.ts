@@ -1,6 +1,14 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
+
+import { BadRequestError } from "../errors/index.js";
 
 const login = async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    throw new BadRequestError("Please Provide E-Mail & Password!");
+  }
+
   res.send("Fake LogIn/Register/SignUp Route.");
 };
 

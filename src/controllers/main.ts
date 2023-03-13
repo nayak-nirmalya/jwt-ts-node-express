@@ -1,11 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import {
-  BadRequestError,
-  CustomAPIError,
-  UnauthenticatedError
-} from "../errors/index.js";
+import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 
 interface DecodeType {
   id: number;
@@ -50,7 +46,7 @@ const dashboard = async (req: Request, res: Response) => {
       secret: `Here Is Your Authorized Data. Your Lucky Number Is: ${luckyNumber}`
     });
   } catch (error) {
-    throw new UnauthenticatedError("Not Authorized!");
+    throw new UnauthenticatedError("Not Authorized / Verification Failed!");
   }
 };
 

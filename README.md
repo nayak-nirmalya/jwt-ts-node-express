@@ -1,15 +1,7 @@
-Its a Basic Web App, that performs CRUD operations, pagination, sorting, filtering fields and numeric filters.
-Technoloy Used: Node, Express, MongoDB, Mongoose, JavaScript, TypeScript and Nodemon.
+Its a Basic Backend using JWT, that verify user and show some secret information.
+Technoloy Used: Node, Express, TypeScript and Nodemon.
 
 ## Running Project
-
-first run this in the root folder to delete and populate DB with data
-
-```bash
-npm run populate
-        OR
-node --experimental-json-modules --loader ts-node/esm ./src/populate.ts
-```
 
 cd into root folder of project and then start express server:
 
@@ -32,4 +24,4 @@ npm install
 npm run start:prod
 ```
 
-Open [http://localhost:${PORT}](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:${PORT}](http://localhost:3000) with your browser or PostMan to see the result.

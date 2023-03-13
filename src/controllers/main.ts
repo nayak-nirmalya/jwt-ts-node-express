@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 
-interface DecodeType {
+export interface DecodeType {
   id: number;
   username: string;
   iat: number;
@@ -28,26 +28,16 @@ const login = async (req: Request, res: Response) => {
   });
 };
 
-const dashboard = async (req: Request, res: Response) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new UnauthenticatedError("No Token Detected!");
-  }
-
-  const token = authHeader.split(" ")[1];
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    const luckyNumber = Math.floor(Math.random() * 100);
-    res.status(200).json({
-      msg: `Hello, ${(decoded as DecodeType).username.toUpperCase()}.`,
-      secret: `Here Is Your Authorized Data. Your Lucky Number Is: ${luckyNumber}`
-    });
-  } catch (error) {
-    throw new UnauthenticatedError("Not Authorized / Verification Failed!");
-  }
+const dashboard = async (
+  req: Request & { user: { id: number; username: string } },
+  res: Response
+) => {
+  const { id, username } = req.user;
+  const luckyNumber = Math.floor(Math.random() * 100);
+  res.status(200).json({
+    msg: `Hello, ${username.toUpperCase()}.`,
+    secret: `Here Is Your Authorized Data. Your Lucky Number Is: ${luckyNumber}`
+  });
 };
 
 export { login, dashboard };

@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { CustomAPIError } from "../errors/index.js";
 
 const errorHandlerMiddleware = async (
-  err: CustomAPIError,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction

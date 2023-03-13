@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import CustomAPIError from "../errors/custom-error.js";
 
 const errorHandlerMiddleware = async (
   err,
@@ -6,10 +7,15 @@ const errorHandlerMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.error(err);
+  if (err instanceof CustomAPIError) {
+    return res.status(err.statusCode).json({
+      msg: err.message
+    });
+  }
+
   return res
     .status(500)
-    .json({ msg: "Something went wrong, please try again" });
+    .json({ msg: "Something Went Wrong, Please Try Again!" });
 };
 
 export default errorHandlerMiddleware;

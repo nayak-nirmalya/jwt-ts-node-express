@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
 import { BadRequestError } from "../errors/index.js";
 
@@ -8,6 +9,9 @@ const login = async (req: Request, res: Response) => {
   if (!username || !password) {
     throw new BadRequestError("Please Provide E-Mail & Password!");
   }
+
+  const id = new Date().getDate();
+  const token = jwt.sign({ id, username });
 
   res.send("Fake LogIn/Register/SignUp Route.");
 };

@@ -1,10 +1,6 @@
 import { Router } from "express";
-import { Product } from "src/models/product.js";
 
-import {
-  getAllProductsStatic,
-  getAllProducts
-} from "../controllers/products.js";
+import { getAllProductsStatic, getAllProducts } from "../controllers/main.js";
 
 const router = Router();
 

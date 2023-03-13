@@ -9,7 +9,7 @@ import notFoundMiddleware from "./middleware/not-found.js";
 const app: Application = express();
 
 // middleware
-app.use(express.static("./public"));
+app.use(express.static("./src/public"));
 app.use(express.json());
 
 // routes

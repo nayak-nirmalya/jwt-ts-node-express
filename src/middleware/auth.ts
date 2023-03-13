@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 import { DecodeType } from "src/controllers/main.js";
-import { CustomAPIError, UnauthenticatedError } from "../errors/index.js";
+import { UnauthenticatedError } from "../errors/index.js";
 
 const authenticationMiddleware = async (
   req: Request & { user: { id: number; username: string } },

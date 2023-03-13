@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
+import { BadRequestError } from "../errors/index.js";
 
 export interface DecodeType {
   id: number;

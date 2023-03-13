@@ -3,12 +3,12 @@ import { StatusCodes } from "http-status-codes";
 import { CustomAPIError } from "../errors/index.js";
 
 const errorHandlerMiddleware = async (
-  err: Error,
+  err: Error & { statusCode?: number },
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (err instanceof CustomAPIError) {
+  if (err.message && err.statusCode) {
     return res.status(err.statusCode).json({
       msg: err.message
     });
